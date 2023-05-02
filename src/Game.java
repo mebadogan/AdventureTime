@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Game {
+    public boolean gameOn;
     Scanner input = new Scanner(System.in);
     public void start() {
         //Beginning
@@ -12,7 +13,10 @@ public class Game {
         System.out.println("Collect food, wood and water to end the adventure.");
 
         player.selectCharacter(); //Select a character
-        player.selectLocation(); //Select a location
+        gameOn = true;
+        while(gameOn == true){
+            player.selectLocation(); //Select a location
+        }
     }
 
 }
