@@ -1,10 +1,11 @@
 import java.util.Scanner;
-
 public class Player {
     private String playerName;
     private Characters character;
     private Location location;
-    Scanner input = new Scanner(System.in);
+
+    private String currentLocation = "Safehouse";
+    public static Scanner input = new Scanner(System.in);
     Player(String playerName) {
         this.playerName = playerName;
     }
@@ -39,9 +40,16 @@ public class Player {
     }
     public void selectLocation(){
         Location[] locationList = {new SafeHouse(this), new Market(this), new Forest(this), new Cave(this), new River(this)};
-        System.out.println("Select a place where you want to go.");
+        System.out.println();
+        System.out.println("***** REGIONS *****");
+        System.out.println();
+        System.out.println("You are at " + currentLocation + " Select a place where you want to go.");
+        int[] locationIDs = new int[4];
+        boolean diffPlaceInput = true;
         for(Location loc : locationList){
-            System.out.println("ID: " + loc.getId() + " Place: " + loc.getPlaceName());
+            if (loc.getPlaceName() != currentLocation){
+                System.out.println("ID: " + loc.getId() + " Place: " + loc.getPlaceName());
+            }
         }
         System.out.println("Press \"0\" to end the game.");
         System.out.print("Selection: ");
@@ -51,28 +59,56 @@ public class Player {
         }
         switch (choose) {
             case 0:
-                System.out.println("*****GAME OVER*****");
+                System.out.println("***** GAME OVER *****");
                 System.exit(0);
             case 1:
+                if(currentLocation == "Safehouse"){
+                    System.out.println("You are currently here. Select another place.");
+                    diffPlaceInput = false;
+                    break;
+                }
                 location = new SafeHouse(this);
                 break;
             case 2:
+                if(currentLocation == "Market"){
+                    System.out.println("You are currently here. Select another place.");
+                    diffPlaceInput = false;
+                    break;
+                }
                 location = new Market(this);
                 break;
             case 3:
+                if(currentLocation == "Forest"){
+                    System.out.println("You are currently here. Select another place.");
+                    diffPlaceInput = false;
+                    break;
+                }
                 location = new Forest(this);
                 break;
             case 4:
+                if(currentLocation == "Cave"){
+                    System.out.println("You are currently here. Select another place.");
+                    diffPlaceInput = false;
+                    break;
+                }
                 location = new Cave(this);
                 break;
             case 5:
+                if(currentLocation == "River"){
+                    System.out.println("You are currently here. Select another place.");
+                    diffPlaceInput = false;
+                    break;
+                }
                 location = new River(this);
 
             default:
                 System.out.println("!!!!!YOU MISTYPED!!!!!");
         }
-        location.onLocation();
-        System.out.println("You are at " + this.location.getPlaceName());
+        if (diffPlaceInput == true){
+            location.onLocation();
+            currentLocation = this.location.getPlaceName();
+            System.out.println("You are at " + currentLocation);
+        }
     }
 
     public String getPlayerName() {

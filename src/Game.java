@@ -1,13 +1,10 @@
-import java.util.Scanner;
-
 public class Game {
     public boolean gameOn;
-    Scanner input = new Scanner(System.in);
     public void start() {
         //Beginning
         System.out.println("Welcome to the Adventure Time!");
         System.out.println("Please enter your name: ");
-        String playerName = input.nextLine();
+        String playerName = Player.input.nextLine();
         Player player = new Player(playerName);
         System.out.println("Hello " + player.getPlayerName() + " !");
         System.out.println("Collect food, wood and water to end the adventure.");
