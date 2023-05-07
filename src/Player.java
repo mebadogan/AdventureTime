@@ -3,11 +3,12 @@ public class Player {
     private String playerName;
     private Characters character;
     private Location location;
-
+    private Inventory inventory;
     private String currentLocation = "Safehouse";
     public static Scanner input = new Scanner(System.in);
     Player(String playerName) {
         this.playerName = playerName;
+        this.inventory = new Inventory();
     }
     public void selectCharacter() {
         System.out.println("Characters: ");
@@ -43,11 +44,16 @@ public class Player {
         System.out.println();
         System.out.println("***** REGIONS *****");
         System.out.println();
-        System.out.println("You are at " + currentLocation + " Select a place where you want to go.");
+        printPlayerHUD();
+        System.out.println();
+        System.out.println("YOU ARE AT " + currentLocation + " SELECT A PLACE WHERE YOU WANT TO GO!");
         int[] locationIDs = new int[4];
         boolean diffPlaceInput = true;
         for(Location loc : locationList){
-            if (loc.getPlaceName() != currentLocation){
+            if (loc.getPlaceName() == currentLocation){
+                System.out.println("ID: " + loc.getId() + " Place: " + loc.getPlaceName() + " ***** YOU ARE CURRENTLY HERE! *****");
+            }
+            else if (loc.getPlaceName() != currentLocation){
                 System.out.println("ID: " + loc.getId() + " Place: " + loc.getPlaceName());
             }
         }
@@ -63,7 +69,7 @@ public class Player {
                 System.exit(0);
             case 1:
                 if(currentLocation == "Safehouse"){
-                    System.out.println("You are currently here. Select another place.");
+                    System.out.println("!!!!! YOU ARE CURRENTLY HERE! SELECT ANOTHER PLACE !!!!!");
                     diffPlaceInput = false;
                     break;
                 }
@@ -71,7 +77,7 @@ public class Player {
                 break;
             case 2:
                 if(currentLocation == "Market"){
-                    System.out.println("You are currently here. Select another place.");
+                    System.out.println("!!!!! YOU ARE CURRENTLY HERE! SELECT ANOTHER PLACE !!!!!");
                     diffPlaceInput = false;
                     break;
                 }
@@ -79,7 +85,7 @@ public class Player {
                 break;
             case 3:
                 if(currentLocation == "Forest"){
-                    System.out.println("You are currently here. Select another place.");
+                    System.out.println("!!!!! YOU ARE CURRENTLY HERE! SELECT ANOTHER PLACE !!!!!");
                     diffPlaceInput = false;
                     break;
                 }
@@ -87,7 +93,7 @@ public class Player {
                 break;
             case 4:
                 if(currentLocation == "Cave"){
-                    System.out.println("You are currently here. Select another place.");
+                    System.out.println("!!!!! YOU ARE CURRENTLY HERE! SELECT ANOTHER PLACE !!!!!");
                     diffPlaceInput = false;
                     break;
                 }
@@ -95,7 +101,7 @@ public class Player {
                 break;
             case 5:
                 if(currentLocation == "River"){
-                    System.out.println("You are currently here. Select another place.");
+                    System.out.println("!!!!! YOU ARE CURRENTLY HERE! SELECT ANOTHER PLACE !!!!!");
                     diffPlaceInput = false;
                     break;
                 }
@@ -125,5 +131,27 @@ public class Player {
 
     public void setCharacter(Characters character) {
         this.character = character;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public void printPlayerHUD(){
+        System.out.println("===== PLAYER STATS =====");
+        System.out.println("Health: " + this.getCharacter().getHealth());
+        System.out.println("Attack Point: " + this.getCharacter().getDamage());
+        System.out.println("Defence Point: " + this.getCharacter().getDefence());
+        System.out.println("Coin: " + this.getCharacter().getMoney());
+        System.out.println("Armor: " + this.getInventory().getArmor().getArmorName() + " with defence point " + this.getInventory().getArmor().getArmorDefence());
+        System.out.println("Weapons: " + this.getInventory().getWeapon().getWeaponName() + " with attack point " + this.getInventory().getWeapon().getWeaponDamage());
+        System.out.println("Water: " + this.getInventory().isWater());
+        System.out.println("Food: " + this.getInventory().isFood());
+        System.out.println("Firewood" + this.getInventory().isFirewood());
+        System.out.println("============*============");
     }
 }

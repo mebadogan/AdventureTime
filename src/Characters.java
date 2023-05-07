@@ -4,6 +4,8 @@ public abstract class Characters {
     private int health;
     private int startHealth;
     private int damage;
+
+    private int defence;
     private int money;
 
     public Characters(int id, String characterName, int health, int damage, int money){
@@ -13,6 +15,7 @@ public abstract class Characters {
         this.damage = damage;
         this.money = money;
         this.startHealth = health;
+        this.defence = 0;
     }
 
     public int getId(){
@@ -53,6 +56,14 @@ public abstract class Characters {
 
     public void setDamage(int newDamage){
         this.damage = newDamage;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
     }
 
     public int getMoney(){
