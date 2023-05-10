@@ -12,7 +12,7 @@ public class SafeHouse extends SafeLocation{
     }
 
     public void areUWinningSon(){
-        if(this.getPlayer().getInventory().isWood() && this.getPlayer().getInventory().isFood() && this.getPlayer().getInventory().isWater()){
+        if(this.getPlayer().getInventory().isSpecialAward() && this.getPlayer().getInventory().isWood() && this.getPlayer().getInventory().isFood() && this.getPlayer().getInventory().isWater()){
             System.out.println("CONGRATULATIONS! YOU HAVE JUST FINISHED THE ADVENTURE.\nSEE YOU SOON!");
             System.exit(0);
         }

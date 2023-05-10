@@ -38,7 +38,7 @@ public class Player {
             System.out.println("WASTED\nGAMEOVER");
             System.exit(0);
         }
-        Location[] locationList = {new SafeHouse(this), new Market(this), new Forest(this), new Cave(this), new River(this)};
+        Location[] locationList = {new SafeHouse(this), new Market(this), new Forest(this), new Cave(this), new River(this), new Mine(this)};
         System.out.println();
         System.out.println("***** REGIONS *****");
         System.out.println("YOU ARE AT " + currentLocation + " SELECT A PLACE WHERE YOU WANT TO GO!");
@@ -85,12 +85,23 @@ public class Player {
                         System.out.println("ID: " + locationList[i].getId() + " Place: " + locationList[i].getPlaceName() + " Award: " + locationList[i].getAward().getAwardName());
                     }
                 }
+                case 5 ->{
+                    if (locationList[i].getPlaceName().equals(currentLocation)) {
+                        System.out.println("ID: " + locationList[i].getId() + " Place: " + locationList[i].getPlaceName() + " ***** YOU ARE CURRENTLY HERE! *****");
+                    }
+                    else if(this.getInventory().isSpecialAward() && !(locationList[i].getPlaceName().equals(currentLocation))){
+                        System.out.println("ID: " + locationList[i].getId() + " Place: " + locationList[i].getPlaceName() + " Award: " + locationList[i].getAward().getAwardName() + " XXX!* CLEARED *!XXX");
+                    }
+                    else{
+                        System.out.println("ID: " + locationList[i].getId() + " Place: " + locationList[i].getPlaceName() + " Award: " + locationList[i].getAward().getAwardName());
+                    }
+                }
             }
         }
         System.out.println("Press \"0\" to end the game.");
         System.out.print("Selection: ");
         int choose = input.nextInt();
-        while (choose < 0 || choose > 5) {
+        while (choose < 0 || choose > 6) {
             System.out.println("You have to enter a number between 0 and 5. Try again!");
             choose = input.nextInt();
         }
@@ -107,13 +118,13 @@ public class Player {
                 }
                 location = locationList[choose - 1];
             }
-            case 3, 4, 5 -> {
+            case 3, 4, 5, 6 -> {
                 if (currentLocation.equals(locationList[choose - 1].getPlaceName())) {
                     System.out.println("!!!!! YOU ARE CURRENTLY HERE! SELECT ANOTHER PLACE !!!!!");
                     diffPlaceInput = false;
                     break;
                 }
-                if ((locationList[choose - 1].getAward().getAwardName().equals("Water") && this.getInventory().isWater()) || (locationList[choose - 1].getAward().getAwardName().equals("Food") && this.getInventory().isFood()) || (locationList[choose - 1].getAward().getAwardName().equals("Wood") && this.getInventory().isWood())) {
+                if ((locationList[choose - 1].getAward().getAwardName().equals("Special Awards") && this.getInventory().isSpecialAward()) || (locationList[choose - 1].getAward().getAwardName().equals("Water") && this.getInventory().isWater()) || (locationList[choose - 1].getAward().getAwardName().equals("Food") && this.getInventory().isFood()) || (locationList[choose - 1].getAward().getAwardName().equals("Wood") && this.getInventory().isWood())) {
                     System.out.println("YOU HAVE CLEARED THIS AREA AND GOT THE AWARD.");
                     diffPlaceInput = false;
                     break;
