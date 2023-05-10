@@ -13,7 +13,7 @@ public class Market extends SafeLocation{
         System.out.println();
 
         while (playerWantsToLeave == false){
-            System.out.println("1- Weapons\n 2- Armor\n0- Leave the Market");
+            System.out.println("1- Weapons\n2- Armor\n0- Leave the Market");
             choose = Player.input.nextInt();
             while (choose < 0 || choose > 3){
                 System.out.println("You entered invalid input. Please try again.");

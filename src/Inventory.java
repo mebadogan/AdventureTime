@@ -1,12 +1,10 @@
 public class Inventory {
     private Weapons weapon;
     private Armors armor;
+
     private boolean water = false;
     private boolean food = false;
-    private boolean firewood = false;
-
-
-
+    private boolean wood = false;
     public Inventory(){
         this.weapon = new Weapons(0,"Shitty Spear", 0, 0);
         this.armor = new Armors(0, "Shitty Shield", 0, 0);
@@ -44,11 +42,11 @@ public class Inventory {
         this.food = food;
     }
 
-    public boolean isFirewood() {
-        return firewood;
+    public boolean isWood() {
+        return wood;
     }
 
-    public void setFirewood(boolean firewood) {
-        this.firewood = firewood;
+    public void setWood(boolean wood) {
+        this.wood = wood;
     }
 }

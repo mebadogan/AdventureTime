@@ -39,7 +39,12 @@ public abstract class Characters {
     }
 
     public void setHealth(int newHealth){
-        this.health = newHealth;
+        if(newHealth <= 0){
+            this.health = 0;
+        }
+        else {
+            this.health = newHealth;
+        }
     }
 
     public int getStartHealth(){

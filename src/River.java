@@ -1,11 +1,7 @@
 
 public class River extends AdventureZone{
     public River(Player player){
-        super(player, "River",5);
+        super(player, "River",5, new Bear(), new Awards("Water", false), 3);
     }
-    @Override
-    public boolean onLocation(){
-        System.out.println("River");
-        return true;
-    }
+
 }

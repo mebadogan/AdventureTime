@@ -3,13 +3,17 @@ public abstract class Location {
     private String placeName;
     private int id;
 
+    private Awards award;
+
+    private boolean isTheAwardTaken = false;
+
+
+
     public Location(Player player, String placeName, int id) {
         this.player = player;
         this.placeName = placeName;
         this.id = id;
-    }
-    public void location(){
-
+        this.award = null;
     }
 
     public boolean onLocation(){
@@ -37,5 +41,21 @@ public abstract class Location {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Awards getAward() {
+        return award;
+    }
+
+    public void setAward(Awards award) {
+        this.award = award;
+    }
+
+    public boolean isTheAwardTaken() {
+        return isTheAwardTaken;
+    }
+
+    public void setTheAwardTaken(boolean theAwardTaken) {
+        isTheAwardTaken = theAwardTaken;
     }
 }
